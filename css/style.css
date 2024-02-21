@@ -30,6 +30,12 @@
   font-style: normal;
 }
 
+:root {
+  --nunito-title-regular: "Nunito", sans-serif;
+  --nunito-title-bold: "Nunito", sans-serif;
+  --nunito-title-regular-italic: "Nunito", sans-serif;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -68,7 +74,7 @@ ol[role=list] {
 body {
   min-height: 100vh;
   line-height: 1.5;
-  background: #23233c;
+  background: var(--background-color);
   color: #dad8d8;
 }
 
@@ -121,4 +127,19 @@ textarea:not([rows]) {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
+}
+
+:root {
+  --background-color: #5E6368;
+  --card-surface-color: #34373F;
+  --primary-color: #B1EE81;
+  --secondary-color: #4285F4;
+  --on-background-color: #6A7792;
+  --text-primary-color: #FFFFFF;
+}
+
+main h1 {
+  color: var(--text-primary-color);
+  font-size: 30px;
+  font-family: "Nunito", sans-serif;
 }

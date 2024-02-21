@@ -1,0 +1,21 @@
+// 1. Background (0dp elevation surface overlay)
+// 2. Surface (with 1dp elevation surface overlay)
+// 3. Primary
+// 4. Secondary
+// 5. On background
+// 6. On Surface
+// 7. On Primary 8. On Secondary
+
+:root {
+    // dark theme
+    --background-color: #5E6368;
+    --card-surface-color: #34373F;
+    --primary-color: #B1EE81;
+    --secondary-color: #4285F4;
+    --on-background-color: #6A7792;
+
+    // text color
+    --text-primary-color: #FFFFFF;
+
+    // social media color
+}
