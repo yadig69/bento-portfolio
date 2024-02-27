@@ -1,0 +1,68 @@
+main {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: .625rem;
+    grid-template-areas:
+        "profile profile skills skills skills skills skills services services"
+        "profile profile skills skills skills skills skills services services"
+        "profile profile skills skills skills skills skills services services"
+        "profile profile project project project project project services services"
+        "profile profile project project project project project services services"
+        "profile profile project project project project project services services"
+        // 
+        "about about project project project project project services services"
+        "about about project project project project project services services"
+        "about about contact contact contact contact contact contact contact"
+        "about about contact contact contact contact contact contact contact"
+        "about about contact contact contact contact contact contact contact"
+    ;
+    width: 97vw;
+    height: 97vh;
+    margin: 0 auto;
+
+    section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        background: var(--card-surface-color);
+        font-size: 20px;
+        color: #fff;
+        box-shadow: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px, rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
+        // height: 100%;
+        // width: 100%;
+        border-radius: 1.25rem;
+        transition: all 500ms;
+        overflow: hidden;
+
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+}
+
+.profile {
+    grid-area: profile;
+}
+
+.about {
+    grid-area: about;
+}
+
+.skill {
+    grid-area: skills;
+}
+
+.project {
+    grid-area: project;
+}
+
+.services {
+    grid-area: services;
+}
+
+.contact {
+    grid-area: contact;
+}

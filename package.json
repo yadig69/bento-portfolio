@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build-sass && browser-sync start --server src",
-    "build-sass": "sass src/scss/style.scss css/style.css",
-    "watch-sass": "sass src/scss/style.scss css/style.css -w"
+    "start": "npm run build-sass && browser-sync start --server --files src/css/style.css",
+    "build-sass": "sass src/scss/style.scss src/css/style.css",
+    "watch-sass": "sass src/scss/style.scss src/css/style.css -w"
   },
   "keywords": [],
   "author": "",

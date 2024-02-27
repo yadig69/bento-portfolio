@@ -1,0 +1,15 @@
+@media screen and (max-width: 550px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 7.2fr 4.2fr 4.2fr 6.5fr 2.5fr 2.5fr;
+        grid-template-areas:
+            "profile"
+            "about"
+            "skills"
+            "project"
+            "services"
+            "contact"
+
+        ;
+    }
+}
