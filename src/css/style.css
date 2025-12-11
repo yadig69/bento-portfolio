@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap");
 .pt-sans-regular {
   font-family: "PT Sans", sans-serif;
   font-weight: 400;
@@ -135,71 +136,137 @@ textarea:not([rows]) {
   --secondary-color: #4285F4;
   --on-background-color: #6A7792;
   --text-primary-color: #FFFFFF;
+  --text-secondary-color: #B1EE81;
+  --text-on-background-color: #6A7792;
+  --grid-gap: 0.625rem;
+  --border-radius: 1.25rem;
+  --transition-speed: 500ms;
+  --section-font-size: 1.25rem;
+  --shadow-primary: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px;
+  --shadow-secondary: rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
 }
 
 main h1 {
   color: var(--text-primary-color);
-  font-size: 30px;
+  font-size: 48px;
   font-family: "Nunito", sans-serif;
+}
+main h2 {
+  color: var(--text-secondary-color);
+  font-size: 24px;
+  font-family: "Nunito", sans-serif;
+}
+main .oswald {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
 }
 
 main {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  grid-gap: 0.625rem;
+  grid-template-rows: repeat(11, 1fr);
+  grid-gap: var(--grid-gap);
   grid-template-areas: "profile profile skills skills skills skills skills services services" "profile profile skills skills skills skills skills services services" "profile profile skills skills skills skills skills services services" "profile profile project project project project project services services" "profile profile project project project project project services services" "profile profile project project project project project services services" "about about project project project project project services services" "about about project project project project project services services" "about about contact contact contact contact contact contact contact" "about about contact contact contact contact contact contact contact" "about about contact contact contact contact contact contact contact";
   width: 97vw;
   height: 97vh;
   margin: 0 auto;
 }
-main section {
+
+.section {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   background: var(--card-surface-color);
-  font-size: 20px;
+  font-size: var(--section-font-size);
   color: #fff;
-  box-shadow: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px, rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
-  border-radius: 1.25rem;
-  transition: all 500ms;
+  box-shadow: var(--shadow-primary), var(--shadow-secondary);
+  border-radius: var(--border-radius);
+  transition: all var(--transition-speed);
   overflow: hidden;
+  will-change: transform;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
-.profile {
+.section--profile {
   grid-area: profile;
 }
-
-.about {
+.section--about {
   grid-area: about;
 }
-
-.skill {
+.section--skills {
   grid-area: skills;
 }
-
-.project {
+.section--project {
   grid-area: project;
+  border: #fff solid 1px;
 }
-
-.services {
+.section--services {
   grid-area: services;
 }
-
-.contact {
+.section--contact {
   grid-area: contact;
+}
+
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas: "profile" "skills" "services" "project" "about" "contact";
+    height: auto;
+    width: 95vw;
+  }
+}
+.parent {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  gap: 8px;
+  border: 1px solid #eee;
+}
+.parent .div1 {
+  grid-column: span 3/span 3;
+  grid-row: span 7/span 7;
+}
+.parent .div2 {
+  grid-column: span 3/span 3;
+  grid-row: span 5/span 5;
+  grid-column-start: 1;
+  grid-row-start: 8;
+}
+.parent .div3 {
+  grid-column: span 5/span 5;
+  grid-row: span 2/span 2;
+  grid-column-start: 4;
+  grid-row-start: 1;
+}
+.parent .div4 {
+  grid-column: span 5/span 5;
+  grid-row: span 7/span 7;
+  grid-column-start: 4;
+  grid-row-start: 3;
+}
+.parent .div5 {
+  grid-column: span 9/span 9;
+  grid-row: span 3/span 3;
+  grid-column-start: 4;
+  grid-row-start: 10;
+}
+.parent .div6 {
+  grid-column: span 4/span 4;
+  grid-row: span 9/span 9;
+  grid-column-start: 9;
+  grid-row-start: 1;
 }
 
 @media screen and (max-width: 550px) {
   main {
     grid-template-columns: 1fr;
-    grid-template-rows: 7.2fr 4.2fr 4.2fr 6.5fr 2.5fr 2.5fr;
+    grid-template-rows: 7.2fr, 4.2fr, 4.2fr, 6.5fr, 2.5fr, 2.5fr;
     grid-template-areas: "profile" "about" "skills" "project" "services" "contact";
+    gap: 1rem;
   }
 }
 

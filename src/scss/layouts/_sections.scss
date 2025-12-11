@@ -1,68 +1,130 @@
+// Grid Layout Variables
+$grid-areas: ("profile profile skills skills skills skills skills services services"
+    "profile profile skills skills skills skills skills services services"
+    "profile profile skills skills skills skills skills services services"
+    "profile profile project project project project project services services"
+    "profile profile project project project project project services services"
+    "profile profile project project project project project services services"
+    "about about project project project project project services services"
+    "about about project project project project project services services"
+    "about about contact contact contact contact contact contact contact"
+    "about about contact contact contact contact contact contact contact"
+    "about about contact contact contact contact contact contact contact"
+);
+
+// Custom Properties
+// :root {
+// --grid-gap: 0.625rem;
+// --border-radius: 1.25rem;
+// --transition-speed: 500ms;
+// --section-font-size: 1.25rem;
+// --shadow-primary: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px;
+// --shadow-secondary: rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
+// }
+
+// Main Grid Layout
 main {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    grid-gap: .625rem;
-    grid-template-areas:
-        "profile profile skills skills skills skills skills services services"
-        "profile profile skills skills skills skills skills services services"
-        "profile profile skills skills skills skills skills services services"
-        "profile profile project project project project project services services"
-        "profile profile project project project project project services services"
-        "profile profile project project project project project services services"
-        // 
-        "about about project project project project project services services"
-        "about about project project project project project services services"
-        "about about contact contact contact contact contact contact contact"
-        "about about contact contact contact contact contact contact contact"
-        "about about contact contact contact contact contact contact contact"
-    ;
-    width: 97vw;
+    grid-template-rows: repeat(11, 1fr);
+    grid-gap: var(--grid-gap);
+    grid-template-areas: $grid-areas;
+    width: min(97vw, 1400px);
     height: 97vh;
+    min-height: 600px;
     margin: 0 auto;
+}
 
-    section {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        background: var(--card-surface-color);
-        font-size: 20px;
-        color: #fff;
-        box-shadow: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px, rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
-        // height: 100%;
-        // width: 100%;
-        border-radius: 1.25rem;
-        transition: all 500ms;
-        overflow: hidden;
+// Base Section Styles
+.section {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    background: var(--card-surface-color);
+    font-size: var(--section-font-size);
+    color: #fff;
+    box-shadow: var(--shadow-primary), var(--shadow-secondary);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed);
+    overflow: hidden;
+    will-change: transform;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+    // Grid Areas
+    &--profile {
+        grid-area: profile;
+    }
+
+    &--about {
+        grid-area: about;
+    }
+
+    &--skills {
+        grid-area: skills;
+    }
+
+    &--project {
+        grid-area: project;
+        border: #fff solid 1px;
+    }
+
+    &--services {
+        grid-area: services;
+    }
+
+    &--contact {
+        grid-area: contact;
     }
 }
 
-.profile {
-    grid-area: profile;
+// Responsive Layout
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-template-areas:
+            "profile profile skills skills skills skills"
+            "profile profile skills skills skills skills"
+            "profile profile project project project project"
+            "about about project project project project"
+            "about about services services services services"
+            "contact contact contact contact contact contact"
+            "contact contact contact contact contact contact"
+            "contact contact contact contact contact contact";
+    }
 }
 
-.about {
-    grid-area: about;
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profile"
+            "skills"
+            "services"
+            "project"
+            "about"
+            "contact";
+        height: auto;
+        width: 95vw;
+        grid-gap: 0.5rem;
+    }
+    
+    .section {
+        min-height: 200px;
+    }
 }
 
-.skill {
-    grid-area: skills;
-}
-
-.project {
-    grid-area: project;
-}
-
-.services {
-    grid-area: services;
-}
-
-.contact {
-    grid-area: contact;
+@media (max-width: 480px) {
+    main {
+        width: 98vw;
+        grid-gap: 0.375rem;
+    }
+    
+    .section {
+        font-size: 1rem;
+        min-height: 150px;
+    }
 }

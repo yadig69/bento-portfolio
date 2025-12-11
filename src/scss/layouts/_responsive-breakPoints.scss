@@ -1,15 +1,24 @@
+// Define grid areas and their proportions
+$grid-areas-responsive: (
+    profile: 7.2fr,
+    about: 4.2fr,
+    skills: 4.2fr,
+    project: 6.5fr,
+    services: 2.5fr,
+    contact: 2.5fr
+);
+
 @media screen and (max-width: 550px) {
     main {
-        grid-template-columns: 1fr;
-        grid-template-rows: 7.2fr 4.2fr 4.2fr 6.5fr 2.5fr 2.5fr;
-        grid-template-areas:
-            "profile"
-            "about"
-            "skills"
-            "project"
-            "services"
-            "contact"
-
-        ;
+      grid-template-columns: 1fr;
+      grid-template-rows: map-values($grid-areas-responsive);
+      grid-template-areas:
+        "profile"
+        "about"
+        "skills"
+        "project"
+        "services"
+        "contact";
+      gap: 1rem;
     }
 }
