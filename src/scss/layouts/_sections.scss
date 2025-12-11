@@ -29,9 +29,10 @@ main {
     grid-template-rows: repeat(11, 1fr);
     grid-gap: var(--grid-gap);
     grid-template-areas: $grid-areas;
-    width: min(97vw, 1400px);
+    width: calc(100% - 2rem);
     height: 97vh;
     min-height: 600px;
+    max-width: 1320px;
     margin: 0 auto;
 }
 

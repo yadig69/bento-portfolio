@@ -23,7 +23,7 @@ figure,
 blockquote,
 dl,
 dd {
-    margin-block-end: 0;
+    margin: 0;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -36,9 +36,10 @@ ol[role='list'] {
 body {
     min-height: 100vh;
     line-height: 1.5;
-
     background: var(--background-color);
-    color: #d8d9da;
+    color: var(--text-primary-color);
+    font-family: 'Nunito Sans', sans-serif;
+    overflow-x: hidden;
 }
 
 /* Set shorter line heights on headings and interactive elements */
