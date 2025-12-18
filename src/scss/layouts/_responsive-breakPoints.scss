@@ -8,10 +8,12 @@ $grid-areas-responsive: (
     contact: 2.5fr
 );
 
+@use 'sass:map';
+
 @media screen and (max-width: 550px) {
     main {
       grid-template-columns: 1fr;
-      grid-template-rows: map-values($grid-areas-responsive);
+      grid-template-rows: map.values($grid-areas-responsive);
       grid-template-areas:
         "profile"
         "about"

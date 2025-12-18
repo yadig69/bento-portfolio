@@ -1,131 +1,225 @@
-// Grid Layout Variables
-$grid-areas: ("profile profile skills skills skills skills skills services services"
-    "profile profile skills skills skills skills skills services services"
-    "profile profile skills skills skills skills skills services services"
-    "profile profile project project project project project services services"
-    "profile profile project project project project project services services"
-    "profile profile project project project project project services services"
-    "about about project project project project project services services"
-    "about about project project project project project services services"
-    "about about contact contact contact contact contact contact contact"
-    "about about contact contact contact contact contact contact contact"
-    "about about contact contact contact contact contact contact contact"
-);
+// Grid Layout using grid-area positioning
+// Layout: 11 columns x 5 rows
+// - navbar: Column 1, spans all 5 rows (1/1/6/2)
+// - profile: Columns 2-4, rows 1-3 (1/2/4/5)
+// - about: Columns 2-4, rows 4-5 (4/2/6/5)
+// - project: Columns 5-9, rows 1-3 (1/5/4/10)
+// - skills: Columns 10-11, rows 1-3 (1/10/4/12)
+// - contact: Columns 5-11, rows 4-5 (4/5/6/12)
 
-// Custom Properties
-// :root {
-// --grid-gap: 0.625rem;
-// --border-radius: 1.25rem;
-// --transition-speed: 500ms;
-// --section-font-size: 1.25rem;
-// --shadow-primary: rgba(3, 8, 20, 0.1) 0rem 2.4px 8px;
-// --shadow-secondary: rgba(2, 8, 20, 0.1) 0rem 1.2px 2.8px;
-// }
+// Custom Properties defined in _root.scss:
+// --grid-gap: Spacing between grid items (0.625rem = 10px)
+// --border-radius: Rounded corners for sections (1.25rem = 20px)
+// --transition-speed: Animation duration (500ms)
+// --section-font-size: Base font size for sections (1.25rem = 20px)
+// --shadow-primary & --shadow-secondary: Layered shadows for depth
 
 // Main Grid Layout
-main {
+// Creates the bento box container with CSS Grid
+.app {
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(11, 1fr);
-    grid-gap: var(--grid-gap);
-    grid-template-areas: $grid-areas;
-    width: calc(100% - 2rem);
-    height: 97vh;
-    min-height: 600px;
-    max-width: 1320px;
-    margin: 0 auto;
+    grid-template-columns: repeat(11, 1fr); // 11 equal columns
+    grid-template-rows: repeat(5, 1fr); // 5 equal height rows
+    grid-column-gap: 10px; // Horizontal spacing (half of 10px)
+    grid-row-gap: 10px; // Vertical spacing
+    width: 100vw; // Full viewport width
+    height: 100vh; // Full viewport height
+    min-height: 700px; // Minimum height to prevent squishing
+    margin: 0;
+    padding: 10px; // Outer padding matches grid gap
+    box-sizing: border-box; // Include padding in width/height calculations
 }
 
 // Base Section Styles
+// Shared styles for all bento box sections
 .section {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    background: var(--card-surface-color);
+    flex-direction: column; // Stack content vertically
+    justify-content: center; // Center content vertically
+    align-items: center; // Center content horizontally
+    background: var(--card-surface-color); // Theme-aware background
     font-size: var(--section-font-size);
-    color: #fff;
-    box-shadow: var(--shadow-primary), var(--shadow-secondary);
-    border-radius: var(--border-radius);
-    transition: all var(--transition-speed);
-    overflow: hidden;
-    will-change: transform;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    color: var(--text-primary-color); // Theme-aware text color
+    box-shadow: var(--shadow-primary), var(--shadow-secondary); // Layered shadows for depth
+    border-radius: var(--border-radius); // Rounded corners
+    transition: all var(--transition-speed); // Smooth transitions for theme changes
+    overflow: hidden; // Prevent content overflow
+    padding: 1rem; // Internal spacing
+    position: relative; // For absolute positioned children
 
-    // Grid Areas
+    // Grid Area Assignments using grid-area positioning
+    // Format: grid-row-start / grid-column-start / grid-row-end / grid-column-end
     &--profile {
-        grid-area: profile;
+        grid-area: 1 / 2 / 4 / 5; // div2: Rows 1-3, Columns 2-4
     }
 
     &--about {
-        grid-area: about;
-    }
-
-    &--skills {
-        grid-area: skills;
-    }
-
-    &--project {
-        grid-area: project;
-        border: #fff solid 1px;
-    }
-
-    &--services {
-        grid-area: services;
+        grid-area: 4 / 2 / 6 / 5; // div3: Rows 4-5, Columns 2-4
     }
 
     &--contact {
-        grid-area: contact;
+        grid-area: 5 / 5 / 6 / 12; // div4: Row 5, Columns 5-11
+    }
+
+    &--project {
+        grid-area: 2 / 5 / 5 / 10; // div5: Rows 2-4, Columns 5-9
+    }
+
+    &--skills {
+        grid-area: 1 / 10 / 5 / 12; // div6: Rows 1-4, Columns 10-11
+    }
+
+    &--services {
+        grid-area: 1 / 5 / 2 / 10; // div7: Row 1, Columns 5-9
+    }
+}
+
+// Navbar as part of bento grid
+// Integrated as the leftmost column of the bento box layout
+.navbar {
+    grid-area: 1 / 1 / 6 / 2; // Spans all 5 rows, column 1
+    background: var(--card-surface-color); // Matches section styling
+    display: flex;
+    flex-direction: column; // Vertical layout
+    align-items: center; // Center items horizontally
+    justify-content: space-between; // Logo/menu at top, theme toggle at bottom
+    padding: 1rem 0; // Vertical padding only
+    border-radius: var(--border-radius); // Rounded corners like sections
+    box-shadow: var(--shadow-primary), var(--shadow-secondary); // Consistent depth
+
+    // Content wrapper for logo and menu
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1; // Takes available space, pushing theme toggle to bottom
+    }
+
+    // Logo/initials at the top
+    &__logo {
+        color: var(--primary-color); // Accent color
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem; // Space below logo
+    }
+
+    // Navigation menu
+    &__menu {
+        list-style: none; // Remove bullet points
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column; // Stack links vertically
+        gap: 1rem; // Space between links
+
+        a {
+            color: var(--text-on-background-color); // Muted text color
+            text-decoration: none; // Remove underline
+            writing-mode: vertical-rl; // Vertical text orientation
+            text-orientation: mixed; // Proper character orientation
+            font-size: 0.875rem;
+            transition: color var(--transition-speed); // Smooth color change
+
+            &:hover {
+                color: var(--primary-color); // Highlight on hover
+            }
+        }
+    }
+
+    // Theme toggle button at the bottom
+    &__theme-toggle {
+        background: var(--primary-color); // Accent color background
+        border: none;
+        border-radius: 50%; // Circular button
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem; // Icon size
+        cursor: pointer;
+        transition: all var(--transition-speed); // Smooth transitions
+        display: flex;
+        align-items: center;
+        justify-content: center; // Center icon
+
+        &:hover {
+            transform: scale(1.1); // Slight grow effect on hover
+        }
     }
 }
 
 // Responsive Layout
-@media (max-width: 1024px) {
-    main {
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(8, 1fr);
-        grid-template-areas:
-            "profile profile skills skills skills skills"
-            "profile profile skills skills skills skills"
-            "profile profile project project project project"
-            "about about project project project project"
-            "about about services services services services"
-            "contact contact contact contact contact contact"
-            "contact contact contact contact contact contact"
-            "contact contact contact contact contact contact";
+// Tablet breakpoint: Adjust grid positioning
+@media (max-width: 1200px) {
+    .app {
+        grid-template-columns: repeat(8, 1fr); // Reduce to 8 columns
+        grid-template-rows: repeat(6, 1fr); // Increase to 6 rows
     }
+
+    .navbar {
+        grid-area: 1 / 1 / 7 / 2;
+    }
+
+    // Spans all 6 rows
+    .section--profile {
+        grid-area: 1 / 2 / 3 / 5;
+    }
+
+    // Rows 1-2, Columns 2-4
+    .section--skills {
+        grid-area: 1 / 5 / 3 / 9;
+    }
+
+    // Rows 1-2, Columns 5-8
+    .section--about {
+        grid-area: 3 / 2 / 5 / 5;
+    }
+
+    // Rows 3-4, Columns 2-4
+    .section--project {
+        grid-area: 3 / 5 / 5 / 9;
+    }
+
+    // Rows 3-4, Columns 5-8
+    .section--services {
+        grid-area: 5 / 2 / 7 / 5;
+    }
+
+    // Rows 5-6, Columns 2-4
+    .section--contact {
+        grid-area: 5 / 5 / 7 / 9;
+    }
+
+    // Rows 5-6, Columns 5-8
 }
 
-@media (max-width: 768px) {
-    main {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            "profile"
-            "skills"
-            "services"
-            "project"
-            "about"
-            "contact";
-        height: auto;
-        width: 95vw;
-        grid-gap: 0.5rem;
+@media (max-width: 480px) {
+
+    // Small mobile breakpoint: Further optimize spacing
+    .app {
+        grid-column-gap: 0;
+        grid-row-gap: 0.375rem; // Even tighter spacing
+        padding: 0.5rem; // Minimal padding
     }
-    
+
+    // Compact sections for small screens
     .section {
-        min-height: 200px;
+        min-height: 200px; // Shorter minimum height
+        padding: 1rem; // Reduced padding
+        font-size: 1rem; // Smaller font size
     }
 }
 
 @media (max-width: 480px) {
-    main {
-        width: 98vw;
-        grid-gap: 0.375rem;
+
+    // Small mobile breakpoint: Further optimize spacing
+    .app {
+        grid-gap: 0.375rem; // Even tighter spacing
+        padding: 0.5rem; // Minimal padding
     }
-    
+
+    // Compact sections for small screens
     .section {
-        font-size: 1rem;
-        min-height: 150px;
+        min-height: 200px; // Shorter minimum height
+        padding: 1rem; // Reduced padding
+        font-size: 1rem; // Smaller font size
     }
 }

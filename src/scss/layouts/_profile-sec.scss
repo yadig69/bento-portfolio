@@ -1,0 +1,42 @@
+.section--profile {
+  .profile-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    padding: 1rem;
+  }
+
+  .image-wrapper {
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+    }
+  }
+
+  .info-wrapper {
+    text-align: center;
+  }
+
+  .name-wrapper {
+    margin-bottom: 0.5rem;
+    
+    h2 {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      margin: 0;
+    }
+  }
+
+  .title-wrapper {
+    h1 {
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0;
+    }
+  }
+}

@@ -7,14 +7,14 @@ import ContactSection from './sections/ContactSection'
 
 const BentoGrid = () => {
   return (
-    <main>
+    <>
       <ProfileSection />
       <AboutSection />
       <SkillsSection />
       <ProjectSection />
       <ServicesSection />
       <ContactSection />
-    </main>
+    </>
   )
 }
 
