@@ -2,9 +2,9 @@
 // Integrated as the leftmost column of the bento box layout
 .navbar {
     grid-area: 1 / 1 / 6 / 2; // Spans all 5 rows, column 1
-    background: rgba(255, 255, 255, 0.1); // Glass background
-    backdrop-filter: blur(10px); // Glass blur effect
-    border: 1px solid rgba(255, 255, 255, 0.2); // Subtle border
+    background: var(--glass-bg); // Glass background
+    backdrop-filter: var(--glass-blur); // Glass blur effect
+    border: 1px solid var(--glass-border); // Subtle border
     display: flex;
     flex-direction: column; // Vertical layout
     align-items: center; // Center items horizontally
