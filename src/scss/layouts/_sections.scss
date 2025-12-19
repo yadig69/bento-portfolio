@@ -37,7 +37,9 @@
     flex-direction: column; // Stack content vertically
     justify-content: center; // Center content vertically
     align-items: center; // Center content horizontally
-    background: var(--card-surface-color); // Theme-aware background
+    background: rgba(255, 255, 255, 0.05); // Glass background
+    backdrop-filter: blur(10px); // Glass blur effect
+    border: 1px solid rgba(255, 255, 255, 0.1); // Subtle border
     font-size: var(--section-font-size);
     color: var(--text-primary-color); // Theme-aware text color
     box-shadow: var(--shadow-primary), var(--shadow-secondary); // Layered shadows for depth
@@ -74,77 +76,7 @@
     }
 }
 
-// Navbar as part of bento grid
-// Integrated as the leftmost column of the bento box layout
-.navbar {
-    grid-area: 1 / 1 / 6 / 2; // Spans all 5 rows, column 1
-    background: var(--card-surface-color); // Matches section styling
-    display: flex;
-    flex-direction: column; // Vertical layout
-    align-items: center; // Center items horizontally
-    justify-content: space-between; // Logo/menu at top, theme toggle at bottom
-    padding: 1rem 0; // Vertical padding only
-    border-radius: var(--border-radius); // Rounded corners like sections
-    box-shadow: var(--shadow-primary), var(--shadow-secondary); // Consistent depth
-
-    // Content wrapper for logo and menu
-    &__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1; // Takes available space, pushing theme toggle to bottom
-    }
-
-    // Logo/initials at the top
-    &__logo {
-        color: var(--primary-color); // Accent color
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 2rem; // Space below logo
-    }
-
-    // Navigation menu
-    &__menu {
-        list-style: none; // Remove bullet points
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column; // Stack links vertically
-        gap: 1rem; // Space between links
-
-        a {
-            color: var(--text-on-background-color); // Muted text color
-            text-decoration: none; // Remove underline
-            writing-mode: vertical-rl; // Vertical text orientation
-            text-orientation: mixed; // Proper character orientation
-            font-size: 0.875rem;
-            transition: color var(--transition-speed); // Smooth color change
-
-            &:hover {
-                color: var(--primary-color); // Highlight on hover
-            }
-        }
-    }
-
-    // Theme toggle button at the bottom
-    &__theme-toggle {
-        background: var(--primary-color); // Accent color background
-        border: none;
-        border-radius: 50%; // Circular button
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem; // Icon size
-        cursor: pointer;
-        transition: all var(--transition-speed); // Smooth transitions
-        display: flex;
-        align-items: center;
-        justify-content: center; // Center icon
-
-        &:hover {
-            transform: scale(1.1); // Slight grow effect on hover
-        }
-    }
-}
+// Navbar styles moved to components/_navbar.scss
 
 // Responsive Layout
 // Tablet breakpoint: Adjust grid positioning
@@ -154,9 +86,7 @@
         grid-template-rows: repeat(6, 1fr); // Increase to 6 rows
     }
 
-    .navbar {
-        grid-area: 1 / 1 / 7 / 2;
-    }
+    // Navbar responsive styles in components/_navbar.scss
 
     // Spans all 6 rows
     .section--profile {

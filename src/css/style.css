@@ -310,7 +310,9 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: var(--card-surface-color);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-size: var(--section-font-size);
   color: var(--text-primary-color);
   box-shadow: var(--shadow-primary), var(--shadow-secondary);
@@ -341,7 +343,9 @@ main {
 
 .navbar {
   grid-area: 1/1/6/2;
-  background: var(--card-surface-color);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -369,6 +373,11 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
+}
+.navbar__menu li {
+  position: relative;
+  z-index: 2;
 }
 .navbar__menu a {
   color: var(--text-on-background-color);
@@ -377,9 +386,51 @@ main {
   text-orientation: mixed;
   font-size: 0.875rem;
   transition: color var(--transition-speed);
+  display: block;
+  padding: 0.5rem;
 }
 .navbar__menu a:hover {
   color: var(--primary-color);
+}
+.navbar__menu #marker {
+  position: absolute;
+  top: 0;
+  transition: 0.5s;
+  z-index: 1;
+}
+.navbar__menu #marker::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 50px;
+  height: 105px;
+  border-radius: 8px;
+  transform: translateX(-50%);
+}
+.navbar__menu li:nth-child(1).active ~ #marker::before {
+  background: #5da6ff;
+  box-shadow: 0 0 15px #5da6ff, 0 0 30px #5da6ff, 0 0 45px #5da6ff;
+}
+.navbar__menu li:nth-child(2).active ~ #marker::before {
+  background: #ff0;
+  box-shadow: 0 0 15px #ff0, 0 0 30px #ff0, 0 0 45px #ff0;
+}
+.navbar__menu li:nth-child(3).active ~ #marker::before {
+  background: #5dffef;
+  box-shadow: 0 0 15px #5dffef, 0 0 30px #5dffef, 0 0 45px #5dffef;
+}
+.navbar__menu li:nth-child(4).active ~ #marker::before {
+  background: #ff5d88;
+  box-shadow: 0 0 15px #ff5d88, 0 0 30px #ff5d88, 0 0 45px #ff5d88;
+}
+.navbar__menu li:nth-child(5).active ~ #marker::before {
+  background: #e45dff;
+  box-shadow: 0 0 15px #e45dff, 0 0 30px #e45dff, 0 0 45px #e45dff;
+}
+.navbar__menu li:nth-child(6).active ~ #marker::before {
+  background: var(--primary-color);
+  box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color), 0 0 45px var(--primary-color);
 }
 .navbar__theme-toggle {
   background: var(--primary-color);
@@ -463,13 +514,16 @@ main {
   gap: 1rem;
   height: 100%;
   padding: 1rem;
+  background-image: url("/src/assets/profile-pic2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .section--profile .image-wrapper img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid var(--primary-color);
 }
 .section--profile .info-wrapper {
   text-align: center;

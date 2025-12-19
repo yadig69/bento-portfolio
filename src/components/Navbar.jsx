@@ -7,17 +7,22 @@ const Navbar = () => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
   }, [isDark])
 
+  useEffect(() => {
+    import('../js/navMarker.js')
+  }, [])
+
   return (
     <nav className="navbar">
       <div className="navbar__content">
         <div className="navbar__logo">GS</div>
         <ul className="navbar__menu">
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#profile"><ion-icon name="person-outline"></ion-icon></a></li>
+          <li><a href="#about"><ion-icon name="information-circle-outline"></ion-icon></a></li>
+          <li><a href="#skills"><ion-icon name="code-slash-outline"></ion-icon></a></li>
+          <li><a href="#projects"><ion-icon name="folder-outline"></ion-icon></a></li>
+          <li><a href="#services"><ion-icon name="briefcase-outline"></ion-icon></a></li>
+          <li><a href="#contact"><ion-icon name="mail-outline"></ion-icon></a></li>
+          <div id="marker"></div>
         </ul>
       </div>
       <button 

@@ -6,6 +6,12 @@
     gap: 1rem;
     height: 100%;
     padding: 1rem;
+
+    background-image: url("/src/assets/profile-pic2.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    // background-attachment: scroll;
   }
 
   .image-wrapper {
@@ -14,7 +20,7 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--primary-color);
+      // border: 3px solid var(--primary-color);
     }
   }
 
@@ -24,7 +30,7 @@
 
   .name-wrapper {
     margin-bottom: 0.5rem;
-    
+
     h2 {
       font-size: clamp(1.2rem, 3vw, 1.8rem);
       margin: 0;

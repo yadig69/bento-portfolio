@@ -1,0 +1,155 @@
+// Navbar as part of bento grid
+// Integrated as the leftmost column of the bento box layout
+.navbar {
+    grid-area: 1 / 1 / 6 / 2; // Spans all 5 rows, column 1
+    background: rgba(255, 255, 255, 0.1); // Glass background
+    backdrop-filter: blur(10px); // Glass blur effect
+    border: 1px solid rgba(255, 255, 255, 0.2); // Subtle border
+    display: flex;
+    flex-direction: column; // Vertical layout
+    align-items: center; // Center items horizontally
+    justify-content: space-between; // Logo/menu at top, theme toggle at bottom
+    padding: 1rem 0; // Vertical padding only
+    border-radius: var(--border-radius); // Rounded corners like sections
+    box-shadow: var(--shadow-primary), var(--shadow-secondary); // Consistent depth
+
+    // Content wrapper for logo and menu
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1; // Takes available space, pushing theme toggle to bottom
+    }
+
+    // Logo/initials at the top
+    &__logo {
+        color: var(--primary-color); // Accent color
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem; // Space below logo
+    }
+
+    // Navigation menu
+    &__menu {
+        list-style: none; // Remove bullet points
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column; // Stack links vertically
+        gap: 1rem; // Space between links
+        position: relative;
+
+        li {
+            position: relative;
+            z-index: 2;
+        }
+
+        a {
+            color: var(--text-on-background-color); // Muted text color
+            text-decoration: none; // Remove underline
+            font-size: 1.2rem;
+            transition: color var(--transition-speed); // Smooth color change
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+
+            ion-icon {
+                font-size: 1.2rem;
+            }
+
+            &:hover {
+                color: var(--primary-color); // Highlight on hover
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        // Animated marker
+        #marker {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3rem;
+            transition: top 0.3s ease;
+            z-index: 1;
+            pointer-events: none;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 4px;
+                height: 80%;
+                border-radius: 2px;
+                transform: translate(-50%, -50%);
+                transition: all 0.3s ease;
+                opacity: 0;
+            }
+        }
+
+        // Active states with different colors
+        li:nth-child(1).active ~ #marker::before {
+            opacity: 1;
+            background: #5da6ff !important;
+            box-shadow: 0 0 10px #5da6ff, 0 0 20px #5da6ff, 0 0 30px #5da6ff !important;
+        }
+
+        li:nth-child(2).active ~ #marker::before {
+            opacity: 1;
+            background: #ffff00 !important;
+            box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00 !important;
+        }
+
+        li:nth-child(3).active ~ #marker::before {
+            opacity: 1;
+            background: #5dffef !important;
+            box-shadow: 0 0 10px #5dffef, 0 0 20px #5dffef, 0 0 30px #5dffef !important;
+        }
+
+        li:nth-child(4).active ~ #marker::before {
+            opacity: 1;
+            background: #ff5d88 !important;
+            box-shadow: 0 0 10px #ff5d88, 0 0 20px #ff5d88, 0 0 30px #ff5d88 !important;
+        }
+
+        li:nth-child(5).active ~ #marker::before {
+            opacity: 1;
+            background: #e45dff !important;
+            box-shadow: 0 0 10px #e45dff, 0 0 20px #e45dff, 0 0 30px #e45dff !important;
+        }
+
+        li:nth-child(6).active ~ #marker::before {
+            opacity: 1;
+            background: var(--primary-color) !important;
+            box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color) !important;
+        }
+    }
+
+    // Theme toggle button at the bottom
+    &__theme-toggle {
+        background: var(--primary-color); // Accent color background
+        border: none;
+        border-radius: 50%; // Circular button
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem; // Icon size
+        cursor: pointer;
+        transition: all var(--transition-speed); // Smooth transitions
+        display: flex;
+        align-items: center;
+        justify-content: center; // Center icon
+
+        &:hover {
+            transform: scale(1.1); // Slight grow effect on hover
+        }
+    }
+}
+
+// Responsive navbar adjustments
+@media (max-width: 1200px) {
+    .navbar {
+        grid-area: 1 / 1 / 7 / 2; // Spans all 6 rows in tablet layout
+    }
+}
