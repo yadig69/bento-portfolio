@@ -57,6 +57,12 @@
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-blur: blur(10px);
+  --neu-bg: transparent;
+  --neu-shadow-light: transparent;
+  --neu-shadow-dark: transparent;
+  --neu-inset-light: none;
+  --neu-inset-dark: none;
+  --neu-outset: none;
 }
 
 [data-theme=light] {
@@ -70,6 +76,12 @@
   --text-on-background-color: #757575;
   --shadow-primary: rgba(0, 0, 0, 0.1) 0rem 2.4px 8px;
   --shadow-secondary: rgba(0, 0, 0, 0.05) 0rem 1.2px 2.8px;
+  --neu-bg: #e0e5ec;
+  --neu-shadow-light: #ffffff;
+  --neu-shadow-dark: #a3b1c6;
+  --neu-inset-light: inset 5px 5px 10px #a3b1c6;
+  --neu-inset-dark: inset -5px -5px 10px #ffffff;
+  --neu-outset: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
 }
 
 /* Box sizing rules */
@@ -224,6 +236,12 @@ main .oswald {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-primary), var(--shadow-secondary);
 }
+[data-theme=light] .navbar {
+  background: var(--neu-bg);
+  backdrop-filter: none;
+  border: none;
+  box-shadow: var(--neu-outset);
+}
 .navbar__content {
   display: flex;
   flex-direction: column;
@@ -259,64 +277,65 @@ main .oswald {
   justify-content: center;
   padding: 0.75rem;
   border-radius: 0.5rem;
+  z-index: 1;
 }
 .navbar__menu a ion-icon {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: 0.25s;
+}
+.navbar__menu a ion-icon:hover {
+  color: var(--primary-color);
+  opacity: 1;
 }
 .navbar__menu a:hover {
   color: var(--primary-color);
   background: rgba(255, 255, 255, 0.1);
+  border-right: 2px solid var(--primary-color);
 }
 .navbar__menu #marker {
   position: absolute;
-  left: 0;
-  width: 100%;
+  right: -1px;
+  width: 3px;
   height: 3rem;
-  transition: top 0.3s ease;
-  z-index: 1;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
   pointer-events: none;
-}
-.navbar__menu #marker::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 80%;
-  border-radius: 2px;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease;
   opacity: 0;
+  background: transparent;
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.navbar__menu li:nth-child(1).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(1) ~ #marker {
+  opacity: 1 !important;
   background: #5da6ff !important;
-  box-shadow: 0 0 10px #5da6ff, 0 0 20px #5da6ff, 0 0 30px #5da6ff !important;
+  box-shadow: 0 0 8px #5da6ff, 0 0 16px #5da6ff !important;
 }
-.navbar__menu li:nth-child(2).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(2) ~ #marker {
+  opacity: 1 !important;
   background: #ffff00 !important;
-  box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00 !important;
+  box-shadow: 0 0 8px #ffff00, 0 0 16px #ffff00 !important;
 }
-.navbar__menu li:nth-child(3).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(3) ~ #marker {
+  opacity: 1 !important;
   background: #5dffef !important;
-  box-shadow: 0 0 10px #5dffef, 0 0 20px #5dffef, 0 0 30px #5dffef !important;
+  box-shadow: 0 0 8px #5dffef, 0 0 16px #5dffef !important;
 }
-.navbar__menu li:nth-child(4).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(4) ~ #marker {
+  opacity: 1 !important;
   background: #ff5d88 !important;
-  box-shadow: 0 0 10px #ff5d88, 0 0 20px #ff5d88, 0 0 30px #ff5d88 !important;
+  box-shadow: 0 0 8px #ff5d88, 0 0 16px #ff5d88 !important;
 }
-.navbar__menu li:nth-child(5).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(5) ~ #marker {
+  opacity: 1 !important;
   background: #e45dff !important;
-  box-shadow: 0 0 10px #e45dff, 0 0 20px #e45dff, 0 0 30px #e45dff !important;
+  box-shadow: 0 0 8px #e45dff, 0 0 16px #e45dff !important;
 }
-.navbar__menu li:nth-child(6).active ~ #marker::before {
-  opacity: 1;
+.navbar__menu li.active:nth-child(6) ~ #marker {
+  opacity: 1 !important;
   background: var(--primary-color) !important;
-  box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color) !important;
+  box-shadow: 0 0 8px var(--primary-color), 0 0 16px var(--primary-color) !important;
 }
 .navbar__theme-toggle {
   background: var(--primary-color);
@@ -370,6 +389,12 @@ main .oswald {
   overflow: hidden;
   padding: 1rem;
   position: relative;
+}
+[data-theme=light] .section {
+  background: var(--neu-bg);
+  backdrop-filter: none;
+  border: none;
+  box-shadow: var(--neu-outset);
 }
 .section--profile {
   grid-area: 1/2/4/5;

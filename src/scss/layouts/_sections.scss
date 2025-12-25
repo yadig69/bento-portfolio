@@ -40,9 +40,73 @@
     background: rgba(255, 255, 255, 0.05); // Glass background (lighter for sections)
     backdrop-filter: var(--glass-blur); // Glass blur effect
     border: 1px solid rgba(255, 255, 255, 0.1); // Subtle border (lighter for sections)
+
+    // Neumorphism for light theme
+    [data-theme="light"] & {
+        background: var(--neu-bg);
+        backdrop-filter: none;
+        border: none;
+        box-shadow: var(--neu-outset);
+    }
+    
+    // Animated border for nav interaction
+    &.nav-active {
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--nav-color), transparent);
+            animation: rotateBorder 2s linear infinite;
+            z-index: -1;
+        }
+        
+        &::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: var(--card-surface-color);
+            border-radius: calc(var(--border-radius) - 2px);
+            z-index: -1;
+        }
+        
+        // Light theme adjustment
+        [data-theme="light"] &::after {
+            background: var(--neu-bg) !important;
+        }
+        
+        // Reverse rotation for specific sections
+        &.section--contact,
+        &.section--skills,
+        &.section--services {
+            &::before {
+                animation: rotateBorderReverse 2s linear infinite;
+            }
+        }
+    }
+    
+    @keyframes rotateBorder {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes rotateBorderReverse {
+        0% { transform: rotate(360deg); }
+        100% { transform: rotate(0deg); }
+    }
+
     font-size: var(--section-font-size);
     color: var(--text-primary-color); // Theme-aware text color
-    box-shadow: var(--shadow-primary), var(--shadow-secondary); // Layered shadows for depth
+    box-shadow: var(--shadow-primary),
+    var(--shadow-secondary); // Layered shadows for depth
     border-radius: var(--border-radius); // Rounded corners
     transition: all var(--transition-speed); // Smooth transitions for theme changes
     overflow: hidden; // Prevent content overflow
