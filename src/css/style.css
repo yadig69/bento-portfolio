@@ -396,6 +396,54 @@ main .oswald {
   border: none;
   box-shadow: var(--neu-outset);
 }
+.section.nav-active {
+  position: relative;
+  overflow: hidden;
+}
+.section.nav-active::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, var(--nav-color), transparent);
+  animation: rotateBorder 2s linear infinite;
+  z-index: -1;
+}
+.section.nav-active::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: var(--card-surface-color);
+  border-radius: calc(var(--border-radius) - 2px);
+  z-index: -1;
+}
+[data-theme=light] .section.nav-active::after {
+  background: var(--neu-bg) !important;
+}
+.section.nav-active.section--contact::before, .section.nav-active.section--skills::before, .section.nav-active.section--services::before {
+  animation: rotateBorderReverse 2s linear infinite;
+}
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotateBorderReverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 .section--profile {
   grid-area: 1/2/4/5;
 }
